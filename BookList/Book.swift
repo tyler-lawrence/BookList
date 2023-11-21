@@ -9,15 +9,17 @@ import Foundation
 import SwiftData
 
 @Model
-class Book {
+class Book: Identifiable {
     let id = UUID()
-    let title: String
-    let author: String
+    var title: String
+    var author: String
     var dateCompleted: Date?
+    var recommendedBy: String?
     
-    init(title: String, author: String, dateCompleted: Date? = nil) {
+    init(title: String, author: String, dateCompleted: Date? = nil, recommendedBy: String? = nil) {
         self.title = title
         self.author = author
         self.dateCompleted = dateCompleted
+        self.recommendedBy = recommendedBy
     }
 }
