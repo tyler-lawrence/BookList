@@ -32,7 +32,7 @@ struct NewBookView: View {
     
     private func addBook() {
         withAnimation {
-            let newBook = Book(title: title, author: author)
+            let newBook = Book(title: title, author: author, recommendedBy: recommender)
             modelContext.insert(newBook)
         }
     }

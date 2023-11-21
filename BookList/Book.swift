@@ -23,3 +23,9 @@ class Book: Identifiable {
         self.recommendedBy = recommendedBy
     }
 }
+
+#if DEBUG
+extension Book{
+    static let testBook = Book(title: "Beserk", author: "cannot remember")
+}
+#endif

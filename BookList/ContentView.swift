@@ -18,7 +18,7 @@ struct ContentView: View {
             List {
                 ForEach(Books) { book in
                     NavigationLink {
-                        Text("Book")
+                       SpecificBookView(book: book)
                     } label: {
                         Text(book.title)
                     }
