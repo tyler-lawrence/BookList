@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SpecificBookView: View {
     var book:Book
+    
     @State var completedBool = false
     var body: some View {
         VStack{
@@ -25,7 +26,11 @@ struct SpecificBookView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 25.0)
-                .foregroundStyle(Color.red)
+//                .foregroundStyle(Color.red)
+          
+                .modifier(black(book: book))
+           
+               
            .opacity(0.8)
         )
         

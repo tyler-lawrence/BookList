@@ -14,35 +14,51 @@ struct ContentView: View {
     @State var showingNewBookSheet = false
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(Books) { book in
-                    NavigationLink {
-                       SpecificBookView(book: book)
-                    } label: {
-                        Text(book.title)
+       
+            NavigationSplitView {
+                ZStack{
+                    Color(.black).ignoresSafeArea()
+                    List {
+                        ForEach(Books) { book in
+                            NavigationLink {
+                               SpecificBookView(book: book)
+                            } label: {
+                                Text(book.title)
+                                   
+                                    .lineLimit(1)
+                            }
+                            
+                        }
+                        .onDelete(perform: deleteBooks)
+                    }
+                    .scrollContentBackground(.hidden)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            EditButton()
+                        }
+                        ToolbarItem {
+                            Button{
+                                showingNewBookSheet.toggle()
+                            } label: {
+                                Label("Add Book", systemImage: "plus")
+                            }
+                        }
                     }
                 }
-                .onDelete(perform: deleteBooks)
+                
+                
+                
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button{
-                        showingNewBookSheet.toggle()
-                    } label: {
-                        Label("Add Book", systemImage: "plus")
-                    }
-                }
+        detail: {
+                Text("Select a Book")
             }
-        } detail: {
-            Text("Select a Book")
-        }
-        .sheet(isPresented: $showingNewBookSheet){
-            NewBookView()
-        }
+            .sheet(isPresented: $showingNewBookSheet){
+                NewBookView()
+            }
+        
+            
+        
+       
     }
 
     private func deleteBooks(offsets: IndexSet) {

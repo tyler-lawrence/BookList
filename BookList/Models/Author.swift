@@ -11,10 +11,16 @@ import SwiftData
 class Author: Identifiable {
     let id = UUID()
     var name:String
-    var books:[Book]
+
     
-    init(name: String, books: [Book]) {
+    init(name: String) {
         self.name = name
-        self.books = books
+
     }
 }
+
+#if DEBUG
+extension Book{
+    static let testAuthor = Author(name: "Kentaro Miura")
+}
+#endif
